@@ -1,0 +1,136 @@
+/* styles.css */
+.new_post_button
+{
+    text-align:center;
+    margin: 20px;
+
+}
+header .nav-links a {
+      color: #ffffff;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+header .nav-links a:hover{
+    background-color: #cd1a98;
+}
+
+.button_submit{
+    padding:10px 20px;
+    font-size:16px; 
+    cursor:pointer;
+    background-color: #eb6da7;
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #fff;
+}
+
+header {
+    background-color: #eb73eb;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #eb6da7;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ff0077;
+}
+
+.search-icon a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+    background: linear-gradient(45deg, #ff0077, #800080);
+    border-bottom-left-radius: 50px;
+    color: #fff;
+}
+
+.content {
+    max-width: 50%;
+}
+
+.content h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.content p {
+    font-size: 1em;
+    margin-bottom: 20px;
+}
+
+.btn {
+    background-color: #eb6da7;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #eb6da7;
+}
+
+.image img {
+    max-width: 100%;
+    border-radius: 20px;
+}
+
+.caption{
+    color:black;
+}
+
+.username{
+    color:black;
+}
+
+.nav-links{
+    color:white
+}
+
+footer{
+    background-color: #eb6da7;
+    text-align: center;
+}

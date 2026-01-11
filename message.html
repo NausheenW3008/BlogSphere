@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messages - BlogSphere</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+    header {
+      background-color: #eb7373;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+    .chat-list {
+      max-width: 800px;
+      margin: 20px auto;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .chat-item {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .chat-item:hover {
+      background: #f9f9f9;
+    }
+    .chat-item img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+    .chat-info {
+      flex-grow: 1;
+    }
+    .chat-info h4 {
+      margin: 0;
+      font-size: 16px;
+      color: #333;
+    }
+    .chat-info p {
+      margin: 3px 0 0;
+      color: #666;
+      font-size: 14px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .chat-time {
+      font-size: 12px;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1>BlogSphere</h1>
+    </div>
+    <div class="nav-links">
+      <a href="home.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="messages.html">Messages</a>
+      <a href="profile.html">Profile</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="chat-list">
+
+      <div class="chat-item">
+        <img src="prof.jpeg" alt="Kashish">
+        <div class="chat-info">
+          <h4>Kashish Fatima</h4>
+          <p>Yes! Loved your blog ❤️</p>
+        </div>
+        <div class="chat-time">10:17 AM</div>
+      </div>
+
+      <div class="chat-item">
+        <img src="Fake Dp.jpg" alt="Ayesha">
+        <div class="chat-info">
+          <h4>Ayesha</h4>
+          <p>Hey girl! Let’s meet this weekend 😍</p>
+        </div>
+        <div class="chat-time">Yesterday</div>
+      </div>
+
+      <div class="chat-item">
+        <img src="sohailraza.jpeg" alt="Ali">
+        <div class="chat-info">
+          <h4>Ali</h4>
+          <p>Bhai, check out my new post ⚡</p>
+        </div>
+        <div class="chat-time">Yesterday</div>
+      </div>
+
+      <div class="chat-item">
+        <img src="sara.jpg" alt="Sara">
+        <div class="chat-info">
+          <h4>Sara</h4>
+          <p>When are you free for project discussion?</p>
+        </div>
+        <div class="chat-time">Monday</div>
+      </div>
+
+      <div class="chat-item">
+        <img src="Maheen.jpg" alt="Maheen">
+        <div class="chat-info">
+          <h4>Maheen</h4>
+          <p>Appi shopping chalein???</p>
+        </div>
+        <div class="chat-time">Monday</div>
+      </div>
+
+      <div class="chat-item">
+        <img src="mohsin.jpg" alt="Sara">
+        <div class="chat-info">
+          <h4>Mohsin</h4>
+          <p>Let's hang out tomorrow!!</p>
+        </div>
+        <div class="chat-time">Monday</div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2024 BlogSphere. All rights reserved.</p>
+  </footer>
+</body>
+</html>

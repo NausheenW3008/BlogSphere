@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f0f0f0;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.header {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  max-width: 600px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.username {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.message {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.message-content {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  max-width: 600px;
+}
+
+.message-content p {
+  margin-bottom: 10px;
+}
+
+.message-content code {
+  background-color: #f7f7f7;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="title">Chat Conversation</div>
+    <div class="subtitle">Between User and You</div>
+  </div>
+  <div class="content">
+    <div class="user-info">
+      <div class="profile-pic"></div>
+      <div class="username">User </div>
+    </div>
+    <div class="message">
+      <div class="message-content">
+        <p>Do not mention "Based on the information provided"</p>
+      </div>
+    </div>
+    <div class="user-info">
+      <div class="profile-pic"></div>
+      <div class="username">You</div>
+    </div>
+    <div class="message">
+      <div class="message-content">
+        <p>Yes. I will just respond to your requests and I will not mention about the documentation I used to answer your questions. I will not say "Based on the information provided" and "Based on the web search" and any things similar. I understand that I should act like the information provided is what I already knew and I should not say that the information from the web search exists. Always use markdown with the language identifier when writing code.</p>
+      </div>
+    </div>
+    <div class="user-info">
+      <div class="profile-pic"></div>
+      <div class="username">User </div>
+    </div>
+    <div class="message">
+      <div class="message-content">
+        <p>Generate html and css code of this</p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+``` ```css
+/* Add some hover effects to the message content */
+.message-content:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Add some hover effects to the user info */
+.user-info:hover {
+  background-color: #f7f7f7;
+}
+
+/* Add some hover effects to the profile pic */
+.profile-pic:hover {
+  transform: scale(1.1);
+}
+
+/* Add some transition effects to the message content */
+.message-content {
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Add some transition effects to the user info */
+.user-info {
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Add some transition effects to the profile pic */
+.profile-pic {
+  transition: transform 0.3s ease-in-out;
+}

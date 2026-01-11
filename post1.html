@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Blog</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>BlogSphere</h1>
+        </div>
+        <div class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="explore.html">Explore</a>
+            <a href="message.html">Messages</a>
+            <a href="profile.html">Profile</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="new_post_button">
+            <a href="create_post.html">
+                <button class="button_submit">➕ Create New Post</button>
+            </a>
+        </div>
+
+        <div class="post-container">
+            <!-- Example Existing Post 1 -->
+            <div class="post">
+                <div class="user-info">
+                    <img src="prof.jpeg" alt="User" width="50" class="user-avatar">
+                    <span class="username">Kashish Fatima</span>
+                </div>
+                <div class="post-image">
+                    <img src="postt3.jpeg" alt="Post Image">
+                </div>
+                <div class="post-details">
+                    <div class="actions">
+                        <button>❤️ Like</button>
+                        <button>💬 Comment</button>
+                    </div>
+                    <div class="caption">
+                        <p><strong>Kashish Fatima</strong> Having an amazing time at the beach! #vacation #beach</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example Existing Post 2 -->
+            <div class="post">
+                <div class="user-info">
+                    <img src="prof4.png" alt="User" width="50"  class="user-avatar">
+                    <span class="username">Nausheen</span>
+                </div>
+                <div class="post-image">
+                    <img src="postt4.jpeg" alt="Post Image">
+                </div>
+                <div class="post-details">
+                    <div class="actions">
+                        <button>❤️ Like</button>
+                        <button>💬 Comment</button>
+                    </div>
+                    <div class="caption">
+                        <p><strong>Nausheen</strong> Just finished reading this amazing book! 📚 #bookworm #reading</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 Social Blog. All rights reserved.</p>
+    </footer>
+
+    <!-- JS to inject new post -->
+    <script>
+      window.onload = function() {
+        let newPost = localStorage.getItem("newPost");
+        if (newPost) {
+          newPost = JSON.parse(newPost);
+          let postsDiv = document.querySelector(".post-container");
+
+          let postHTML = `
+            <div class="post">
+              <div class="user-info">
+                <img src="prof4.png" alt="User" width="50" class="user-avatar">
+                <span class="username">You</span>
+              </div>
+              ${newPost.image ? `<div class="post-image"><img src="${newPost.image}" alt="Post Image">` : ""}
+              <div class="post-details">
+                <div class="actions">
+                  <button>❤️ Like</button>
+                  <button>💬 Comment</button>
+                </div>
+                <div class="caption">
+                  <p><strong>${newPost.title}</strong></p>
+                  <p>${newPost.content}</p>
+                </div>
+              </div>
+            </div>
+          `;
+
+          postsDiv.innerHTML = postHTML + postsDiv.innerHTML;
+          localStorage.removeItem("newPost");
+        }
+      };
+    </script>
+</body>
+</html>

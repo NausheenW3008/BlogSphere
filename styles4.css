@@ -1,0 +1,122 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fafafa;
+}
+
+/* Header Section */
+header {
+    background-color: #ffffff;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eaeaea;
+}
+
+header .logo h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+header .nav-links a {
+    text-decoration: none;
+    color: #333;
+    margin: 0 15px;
+    font-size: 16px;
+}
+
+/* Main Content Section */
+main {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Post Container */
+.post-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Post Structure */
+.post {
+    background-color: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post .user-info {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.post .user-info .user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.post .user-info .username {
+    font-weight: bold;
+    color: #333;
+}
+
+.post .post-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.post .post-details {
+    padding: 10px;
+}
+
+.post .post-details .actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.post .post-details .actions button {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #333;
+}
+
+.post .post-details .actions button:hover {
+    color: #007bff;
+}
+
+.post .caption p {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Footer */
+footer {
+    background-color: #ffffff;
+    padding: 15px;
+    text-align: center;
+    border-top: 1px solid #eaeaea;
+    margin-top: 30px;
+}
+
+footer p {
+    font-size: 14px;
+    color: #999;
+}

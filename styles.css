@@ -130,6 +130,61 @@ nav ul li a:hover {
     color:white
 }
 
+/* Search Bar Styling */
+.search-container {
+    text-align: center;
+    margin: 20px auto;
+}
+
+#searchInput {
+    width: 60%;
+    max-width: 500px;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 25px;
+    border: 2px solid #eb6da7;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#searchInput::placeholder {
+    color: #999;
+}
+
+#searchInput:focus {
+    border-color: #cd1a98;
+    box-shadow: 0 0 8px rgba(235, 109, 167, 0.6);
+}
+
+.comments-section p {
+    color: #000; /* black text for comments */
+    font-size: 0.95em;
+    margin: 5px 0;
+}
+
+
+.comment-input {
+    width: 70%;
+    color: #000;
+    padding: 7px 10px;
+    border-radius: 20px;
+    border: 1px solid #eb6da7;
+    margin-right: 5px;
+}
+
+.comments-section button {
+    padding: 7px 12px;
+    border: none;
+    background-color: #eb6da7;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.comments-section button:hover {
+    background-color: #cd1a98;
+}
+
 footer{
     background-color: #eb6da7;
     text-align: center;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,12 +37,15 @@
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            background-color: #ddd; /* Placeholder color */
-            margin: 0 auto 20px; /* Centered with margin */
+            background-color: #ddd;
+            /* Placeholder color */
+            margin: 0 auto 20px;
+            /* Centered with margin */
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 50px; /* Placeholder size */
+            font-size: 50px;
+            /* Placeholder size */
             color: #888;
         }
 
@@ -103,6 +107,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="login-container">
         <div class="login-card">
@@ -112,23 +117,43 @@
             </div>
             <h2>Login</h2>
             <!-- Form redirects to post1.html -->
-            <form action="post1.html" method="GET">
-                <div class="input-group">
-                    <label for="username">
-                        <span class="icon">👤</span>
-                        <input type="text" id="username" name="username" placeholder="Username" required>
-                    </label>
-                </div>
-                <div class="input-group">
-                    <label for="password">
-                        <span class="icon">🔒</span>
-                        <input type="password" id="password" name="password" placeholder="Password" required>
-                    </label>
-                </div>
-                <button type="submit" class="btn">Continue</button>
-                <a href="#" class="forgot-password">Forgot your password?</a>
+
+            <div class="input-group">
+                <label for="username">
+                    <span class="icon">👤</span>
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+                </label>
+            </div>
+            <div class="input-group">
+                <label for="password">
+                    <span class="icon">🔒</span>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </label>
+            </div>
+            <button type="submit" class="btn">Continue</button>
+            <a href="#" class="forgot-password">Forgot your password?</a>
             </form>
         </div>
     </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // prevent default GET submit
+
+            const email = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            let users = JSON.parse(localStorage.getItem('users')) || {};
+
+            if (users[email] && users[email].password === password) {
+                localStorage.setItem('loggedIn', email); // optional: remember logged-in user
+                alert("Login successful!");
+                window.location.href = "post1.html"; // redirect to posts page
+            } else {
+                alert("Invalid ID or Password");
+            }
+        });
+    </script>
+
 </body>
+
 </html>

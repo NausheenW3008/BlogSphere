@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Social Media Blog</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <header>
         <div class="logo">
@@ -20,10 +22,17 @@
     </header>
 
     <main>
+
         <div class="new_post_button">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search posts..." onkeyup="searchPosts()" />
+            </div>
+
+
             <a href="create_post.html">
                 <button class="button_submit">➕ Create New Post</button>
             </a>
+
         </div>
 
         <div class="post-container">
@@ -44,13 +53,19 @@
                     <div class="caption">
                         <p><strong>Kashish Fatima</strong> Having an amazing time at the beach! #vacation #beach</p>
                     </div>
+                    <!-- <div class="comments-section">
+                        <div class="existing-comments"></div>
+                        <input type="text" placeholder="Add a comment..." class="comment-input">
+                        <button onclick="addComment(this)">Add Comment</button>
+                    </div> -->
+
                 </div>
             </div>
 
             <!-- Example Existing Post 2 -->
             <div class="post">
                 <div class="user-info">
-                    <img src="prof4.png" alt="User" width="50"  class="user-avatar">
+                    <img src="prof4.png" alt="User" width="50" class="user-avatar">
                     <span class="username">Nausheen</span>
                 </div>
                 <div class="post-image">
@@ -64,6 +79,12 @@
                     <div class="caption">
                         <p><strong>Nausheen</strong> Just finished reading this amazing book! 📚 #bookworm #reading</p>
                     </div>
+                    <!-- <div class="comments-section">
+                        <div class="existing-comments"></div>
+                        <input type="text" placeholder="Add a comment..." class="comment-input">
+                        <button onclick="addComment(this)">Add Comment</button>
+                    </div> -->
+
                 </div>
             </div>
         </div>
@@ -75,13 +96,13 @@
 
     <!-- JS to inject new post -->
     <script>
-      window.onload = function() {
-        let newPost = localStorage.getItem("newPost");
-        if (newPost) {
-          newPost = JSON.parse(newPost);
-          let postsDiv = document.querySelector(".post-container");
+        window.onload = function () {
+            let newPost = localStorage.getItem("newPost");
+            if (newPost) {
+                newPost = JSON.parse(newPost);
+                let postsDiv = document.querySelector(".post-container");
 
-          let postHTML = `
+                let postHTML = `
             <div class="post">
               <div class="user-info">
                 <img src="prof4.png" alt="User" width="50" class="user-avatar">
@@ -101,10 +122,114 @@
             </div>
           `;
 
-          postsDiv.innerHTML = postHTML + postsDiv.innerHTML;
-          localStorage.removeItem("newPost");
+                postsDiv.innerHTML = postHTML + postsDiv.innerHTML;
+                localStorage.removeItem("newPost");
+            }
+        };
+        // 🔍 SEARCH FUNCTION
+        function searchPosts() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let posts = document.querySelectorAll(".post");
+
+            posts.forEach(post => {
+                let text = post.innerText.toLowerCase();
+                post.style.display = text.includes(input) ? "block" : "none";
+            });
         }
-      };
+        // Function to initialize comment toggle for all posts
+        function initComments() {
+            document.querySelectorAll('.post').forEach(post => {
+                // check if already initialized
+                if (post.dataset.commentInit) return;
+
+                const commentBtn = post.querySelector('.actions button:nth-child(2)'); // 💬 Comment button
+                const captionDiv = post.querySelector('.caption');
+
+                // create container for comments and input
+                const commentsContainer = document.createElement('div');
+                commentsContainer.classList.add('comments-section');
+
+                const existingComments = document.createElement('div');
+                existingComments.classList.add('existing-comments');
+
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = 'Add a comment...';
+                input.classList.add('comment-input');
+                input.style.display = 'none';
+
+                const addBtn = document.createElement('button');
+                addBtn.innerText = 'Add';
+                addBtn.style.display = 'none';
+
+                commentsContainer.appendChild(existingComments);
+                commentsContainer.appendChild(input);
+                commentsContainer.appendChild(addBtn);
+
+                captionDiv.after(commentsContainer);
+
+                // Toggle input visibility
+                commentBtn.addEventListener('click', () => {
+                    input.style.display = input.style.display === 'none' ? 'inline-block' : 'none';
+                    addBtn.style.display = addBtn.style.display === 'none' ? 'inline-block' : 'none';
+                    input.focus();
+                });
+
+                // Add comment
+                addBtn.addEventListener('click', () => {
+                    const commentText = input.value.trim();
+                    if (commentText === "") return;
+
+                    const p = document.createElement('p');
+                    p.innerText = commentText;
+                    p.style.margin = '5px 0';
+                    existingComments.appendChild(p);
+
+                    input.value = "";
+                });
+
+                // mark as initialized
+                post.dataset.commentInit = true;
+            });
+        }
+
+        // window.onload + inject newPost logic
+        window.onload = function () {
+            let newPost = localStorage.getItem("newPost");
+            if (newPost) {
+                newPost = JSON.parse(newPost);
+                let postsDiv = document.querySelector(".post-container");
+
+                let postHTML = `
+      <div class="post">
+        <div class="user-info">
+          <img src="prof4.png" alt="User" width="50" class="user-avatar">
+          <span class="username">You</span>
+        </div>
+        ${newPost.image ? `<div class="post-image"><img src="${newPost.image}" alt="Post Image"></div>` : ""}
+        <div class="post-details">
+          <div class="actions">
+            <button>❤️ Like</button>
+            <button>💬 Comment</button>
+          </div>
+          <div class="caption">
+            <p><strong>${newPost.title}</strong></p>
+            <p>${newPost.content}</p>
+          </div>
+        </div>
+      </div>
+    `;
+
+                postsDiv.innerHTML = postHTML + postsDiv.innerHTML;
+                localStorage.removeItem("newPost");
+            }
+
+            // Initialize comments for all posts (existing + newly injected)
+            initComments();
+        };
+
+
     </script>
 </body>
+
 </html>

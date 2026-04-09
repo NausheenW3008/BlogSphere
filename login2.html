@@ -105,6 +105,51 @@
         .forgot-password:hover {
             text-decoration: underline;
         }
+
+        /* ===== LOGIN PAGE ANIMATIONS ===== */
+
+        .login-card {
+            animation: slideFade 0.7s ease forwards;
+        }
+
+        .avatar {
+            animation: pulse 2s infinite;
+        }
+
+        .btn {
+            transition: all 0.25s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        @keyframes slideFade {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            }
+        }
     </style>
 </head>
 
@@ -118,21 +163,24 @@
             <h2>Login</h2>
             <!-- Form redirects to post1.html -->
 
-            <div class="input-group">
-                <label for="username">
-                    <span class="icon">👤</span>
-                    <input type="text" id="username" name="username" placeholder="Username" required>
-                </label>
-            </div>
-            <div class="input-group">
-                <label for="password">
-                    <span class="icon">🔒</span>
-                    <input type="password" id="password" name="password" placeholder="Password" required>
-                </label>
-            </div>
-            <button type="submit" class="btn">Continue</button>
-            <a href="#" class="forgot-password">Forgot your password?</a>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label>
+                        <span class="icon">👤</span>
+                        <input type="text" id="username" placeholder="Email" required>
+                    </label>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        <span class="icon">🔒</span>
+                        <input type="password" id="password" placeholder="Password" required>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn">Continue</button>
             </form>
+
         </div>
     </div>
     <script>

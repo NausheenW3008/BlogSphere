@@ -17,6 +17,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            animation: pageFade 1s ease forwards;
         }
 
         .profile-container {
@@ -27,6 +28,8 @@
             width: 350px;
             text-align: center;
             padding: 20px;
+             animation: cardRise 0.9s ease forwards;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
         .profile-picture {
@@ -36,6 +39,8 @@
             overflow: hidden;
             margin: 0 auto;
             border: 3px solid #007bff;
+            animation: floatPic 3s ease-in-out infinite,
+               glowRing 2s ease-in-out infinite alternate;
         }
 
         .profile-picture img {
@@ -49,6 +54,7 @@
             font-weight: 700;
             margin: 15px 0;
             color: #333;
+            animation: slideFadeText 0.8s ease forwards;
         }
 
         .profile-bio {
@@ -56,12 +62,17 @@
             color: #150101;
             margin-bottom: 20px;
             line-height: 1.5;
+                animation: fadeOnly 1.2s ease forwards;
+
         }
 
         .social-links {
             display: flex;
             justify-content: center;
             gap: 10px;
+            position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .social-links a {
@@ -76,7 +87,67 @@
 
         .social-links a:hover {
             background-color: #0056b3;
+             transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.3);
         }
+        .social-links a::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 120%;
+    height: 100%;
+    background: rgba(255,255,255,0.35);
+    transition: 0.5s;
+}
+
+.social-links a:hover::after {
+    left: 120%;
+}
+
+/* ===== KEYFRAMES ===== */
+
+@keyframes pageFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes cardRise {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes floatPic {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes glowRing {
+    from { box-shadow: 0 0 10px rgba(0,123,255,0.4); }
+    to { box-shadow: 0 0 25px rgba(0,123,255,0.8); }
+}
+
+@keyframes slideFadeText {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOnly {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
     </style>
 </head>
 <body>

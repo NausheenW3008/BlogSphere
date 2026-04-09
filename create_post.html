@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Create Post - BlogSphere</title>
   <link rel="stylesheet" href="styles5.css">
 </head>
+
 <body>
   <header>
     <div class="logo">
@@ -45,13 +47,13 @@
 
   <script>
     // Show image preview
-    document.getElementById("image").addEventListener("change", function(event) {
+    document.getElementById("image").addEventListener("change", function (event) {
       const file = event.target.files[0];
       const preview = document.getElementById("preview");
       preview.innerHTML = "";
       if (file) {
         const reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
           preview.innerHTML = `<p><b>Image Preview:</b></p><img src="${e.target.result}" alt="Blog Image" style="max-width:100%; border-radius:8px;">`;
         };
         reader.readAsDataURL(file);
@@ -59,35 +61,48 @@
     });
 
     // Handle form submission
-    document.getElementById("blogForm").addEventListener("submit", function(e) {
-      e.preventDefault();
+    
+      document.getElementById("blogForm").addEventListener("submit", function (e) {
+        e.preventDefault();
 
-      let title = document.getElementById("title").value;
-      let content = document.getElementById("content").value;
+      let title = document.getElementById("title").value.trim();
+      let content = document.getElementById("content").value.trim();
       let imageFile = document.getElementById("image").files[0];
 
+      if (!title || !content) {
+        alert("Fill all fields");
+      return;
+  }
+
+      let posts = JSON.parse(localStorage.getItem("posts")) || [];
+
       if (imageFile) {
-        const reader = new FileReader();
-        reader.onload = function(evt) {
-          let newPost = {
-            title: title,
-            content: content,
-            image: evt.target.result
-          };
-          localStorage.setItem("newPost", JSON.stringify(newPost));
-          window.location.href = "post_success.html";
-        };
-        reader.readAsDataURL(imageFile);
-      } else {
-        let newPost = {
+    const reader = new FileReader();
+      reader.onload = function (evt) {
+        posts.unshift({
+          title: title,
+          content: content,
+          image: evt.target.result
+        });
+
+      localStorage.setItem("posts", JSON.stringify(posts));
+      window.location.href = "post1.html";
+    };
+      reader.readAsDataURL(imageFile);
+  } else {
+        posts.unshift({
           title: title,
           content: content,
           image: null
-        };
-        localStorage.setItem("newPost", JSON.stringify(newPost));
-        window.location.href = "post_success.html";
-      }
-    });
+        });
+
+      localStorage.setItem("posts", JSON.stringify(posts));
+      window.location.href = "post1.html";
+  }
+});
+  
+
   </script>
 </body>
+
 </html>

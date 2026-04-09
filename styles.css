@@ -189,3 +189,39 @@ footer{
     background-color: #eb6da7;
     text-align: center;
 }
+/* ===== POST PAGE ANIMATIONS ===== */
+
+.hero {
+    animation: heroReveal 1s ease forwards;
+}
+
+.content h1 {
+    animation: textSlide 0.8s ease forwards;
+}
+
+.image img {
+    transition: transform 0.4s ease;
+}
+
+.image img:hover {
+    transform: scale(1.05);
+}
+
+.comments-section p {
+    animation: commentFade 0.4s ease forwards;
+}
+
+@keyframes heroReveal {
+    from { opacity: 0; transform: translateY(-40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes textSlide {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes commentFade {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

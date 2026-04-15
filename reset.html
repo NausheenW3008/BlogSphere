@@ -92,7 +92,7 @@ document.getElementById("resetForm").addEventListener("submit", async (e) => {
 
   const password = document.getElementById("password").value;
 
-  const res = await fetch(`http://localhost:5000/auth/reset-password/${token}`, {
+  const res = await fetch(`https://blogsphere-backend-al6x.onrender.com/auth/reset-password/${token}`, {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({ password })

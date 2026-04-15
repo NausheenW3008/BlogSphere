@@ -113,7 +113,7 @@
       const name = firstName + " " + lastName;
       if (!firstName || !lastName || !email || !password) { alert("Please fill in all fields!"); return; }
       try {
-        const response = await fetch("http://localhost:5000/auth/register", {
+        const response = await fetch("https://blogsphere-backend-al6x.onrender.com/auth/register", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name, email, password })

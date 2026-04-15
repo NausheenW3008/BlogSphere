@@ -90,7 +90,7 @@ document.getElementById("forgotForm").addEventListener("submit", async (e) => {
 
   const email = document.getElementById("email").value;
 
-  const res = await fetch("http://localhost:5000/auth/forgot-password", {
+  const res = await fetch("https://blogsphere-backend-al6x.onrender.com/forgot-password", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({ email })

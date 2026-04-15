@@ -1,126 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog User Profiles</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #ebaaaa;
-            padding: 20px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore - BlogSphere</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(160deg, #F4C0D1 0%, #FAEEDA 100%);
+    }
+    header {
+      background: linear-gradient(90deg, #D4537E, #ED93B1);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    header h1 { color: white; font-size: 1.3rem; }
+    .nav-links { display: flex; align-items: center; gap: 16px; }
+    .nav-links a {
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .nav-links a:hover { color: white; }
+    .logout-btn {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: 1.5px solid white;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .logout-btn:hover { background: rgba(255,255,255,0.35); }
 
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-        }
+    main { padding: 36px 24px; max-width: 1100px; margin: 0 auto; }
 
-        .profile-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
+    .page-title {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #72243E;
+      margin-bottom: 8px;
+    }
+    .page-subtitle {
+      text-align: center;
+      font-size: 14px;
+      color: #993556;
+      margin-bottom: 32px;
+    }
 
-        .profile-card {
-            background-color: #ed7b7f;
-            width: 250px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            text-align: center;
-        }
+    .section-label {
+      font-size: 13px;
+      font-weight: bold;
+      color: #993556;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
 
-        .profile-card img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-            border: 2px solid #007bff;
-        }
+    .profile-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
 
-        .profile-card h3 {
-            font-size: 1.2rem;
-            color: #333;
-            margin: 10px 0;
-        }
+    .profile-card {
+      background: #FBEAF0;
+      border-radius: 16px;
+      border: 1px solid #ED93B1;
+      box-shadow: 0 4px 16px rgba(212,83,126,0.12);
+      padding: 24px 20px;
+      text-align: center;
+      width: 220px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: fadeUp 0.5s ease forwards;
+    }
+    .profile-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(212,83,126,0.25);
+    }
+    .profile-card.you-card {
+      border: 2px solid #D4537E;
+      background: linear-gradient(160deg, #FBEAF0, #FAEEDA);
+    }
 
-        .profile-card p {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 20px;
-        }
+    .you-badge {
+      display: inline-block;
+      background: linear-gradient(90deg, #D4537E, #EF9F27);
+      color: white;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 3px 10px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
 
-        .follow-button {
-            background-color: #007bff;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
+    .card-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 12px;
+      display: block;
+      border: 3px solid #D4537E;
+    }
+    .card-avatar-initials {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #D4537E, #EF9F27);
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 22px;
+      font-weight: bold;
+      border: 3px solid #D4537E;
+    }
 
-        .follow-button:hover {
-            background-color: #0056b3;
-        }
+    .card-name {
+      font-size: 15px;
+      font-weight: bold;
+      color: #72243E;
+      margin-bottom: 6px;
+    }
+    .card-bio {
+      font-size: 12px;
+      color: #993556;
+      line-height: 1.5;
+      margin-bottom: 16px;
+      min-height: 48px;
+    }
 
-        .followed {
-            background-color: #28a745;
-        }
+    .follow-btn {
+      width: 100%;
+      padding: 8px;
+      border-radius: 20px;
+      border: 2px solid #D4537E;
+      background: transparent;
+      color: #D4537E;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .follow-btn:hover, .follow-btn.following {
+      background: linear-gradient(90deg, #D4537E, #EF9F27);
+      color: white;
+      border-color: transparent;
+    }
+    .you-label {
+      width: 100%;
+      padding: 8px;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #D4537E, #EF9F27);
+      color: white;
+      font-size: 13px;
+      font-weight: bold;
+      border: none;
+      cursor: default;
+    }
 
-        .followed:hover {
-            background-color: #218838;
-        }
-    </style>
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #993556;
+      font-size: 13px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-    <h1>Connect with more like you...</h1>
-    <div class="profile-container">
-        <!-- User Profile Card -->
-        <div class="profile-card">
-            <img src="anjali.jpeg" alt="User 1">
-            <h3>Anjali Gupta</h3>
-            <p>Travel blogger and photographer. Exploring the world one city at a time!</p>
-            <button class="follow-button" onclick="toggleFollow(this)">Follow</button>
-        </div>
-
-        <div class="profile-card">
-            <img src="daniya.jpeg" alt="User 2">
-            <h3>Daniya Shamsi</h3>
-            <p>Tech enthusiast, coding my way through life. Let's connect and innovate together!</p>
-            <button class="follow-button" onclick="toggleFollow(this)">Follow</button>
-        </div>
-
-        <div class="profile-card">
-            <img src="vashvi.jpeg" alt="User 3">
-            <h3>Vashvi P</h3>
-            <p>Book lover and aspiring novelist. Sharing stories and finding inspiration.</p>
-            <button class="follow-button" onclick="toggleFollow(this)">Follow</button>
-        </div>
-
-        <div class="profile-card">
-            <img src="prof.jpeg" alt="User 4">
-            <h3>Kashish Fatima</h3>
-            <p>Fitness trainer. Helping you stay fit and motivated every day!</p>
-            <button class="follow-button" onclick="toggleFollow(this)">Follow</button>
-        </div>
+  <header>
+    <h1>BlogSphere</h1>
+    <div class="nav-links">
+      <a href="post1.html">Feed</a>
+      <a href="profile.html">Profile</a>
+      <button class="logout-btn" onclick="logout()">Logout</button>
     </div>
+  </header>
 
-    <script>
-        function toggleFollow(button) {
-            if (button.classList.contains('followed')) {
-                button.textContent = 'Follow';
-                button.classList.remove('followed');
-            } else {
-                button.textContent = 'Following';
-                button.classList.add('followed');
-            }
-        }
-    </script>
+  <main>
+    <div class="page-title">Explore Bloggers 🌸</div>
+    <div class="page-subtitle">Connect with more people like you</div>
+
+    <div class="section-label">You</div>
+    <div class="profile-grid" id="you-section"></div>
+
+    <div class="section-label">People you may know</div>
+    <div class="profile-grid" id="others-section"></div>
+  </main>
+
+  <footer>
+    <p>© 2025 BlogSphere. Made with 🌸</p>
+  </footer>
+
+  <script>
+    const username = localStorage.getItem("username");
+    const token = localStorage.getItem("token");
+    if (!token) { window.location.href = "login2.html"; }
+
+    function logout() {
+      localStorage.removeItem("token");
+      localStorage.removeItem("username");
+      window.location.href = "login2.html";
+    }
+
+    function getInitials(name) {
+      if (!name) return "?";
+      return name.split(" ").map(n => n[0]).join("").toUpperCase().slice(0, 2);
+    }
+
+    // Show logged in user card
+    const youSection = document.getElementById("you-section");
+    youSection.innerHTML = `
+      <div class="profile-card you-card">
+        <div class="you-badge">You</div>
+        <div class="card-avatar-initials">${getInitials(username)}</div>
+        <div class="card-name">${username || "You"}</div>
+        <div class="card-bio">This is your BlogSphere profile. Share your thoughts with the world!</div>
+        <button class="you-label">Your Profile</button>
+      </div>
+    `;
+
+    // Static other users
+    const users = [
+      { name: "Anjali Gupta", img: "anjali.jpeg", bio: "Travel blogger and photographer. Exploring the world one city at a time!" },
+      { name: "Daniya Shamsi", img: "daniya.jpeg", bio: "Tech enthusiast, coding my way through life. Let's connect and innovate!" },
+      { name: "Vashvi P", img: "vashvi.jpeg", bio: "Book lover and aspiring novelist. Sharing stories and finding inspiration." },
+      { name: "Kashish Fatima", img: "prof.jpeg", bio: "Fitness trainer. Helping you stay fit and motivated every day!" },
+      { name: "Sara Khan", img: "sara.jpg", bio: "Food blogger and home chef. Bringing flavors to your feed!" },
+      { name: "Maheen", img: "Maheen.jpg", bio: "Artist and creative soul. Painting the world in colors!" },
+    ];
+
+    const othersSection = document.getElementById("others-section");
+    users.forEach(user => {
+      othersSection.innerHTML += `
+        <div class="profile-card">
+          <img class="card-avatar" src="${user.img}" alt="${user.name}"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="card-avatar-initials" style="display:none">${getInitials(user.name)}</div>
+          <div class="card-name">${user.name}</div>
+          <div class="card-bio">${user.bio}</div>
+          <button class="follow-btn" onclick="toggleFollow(this)">Follow</button>
+        </div>
+      `;
+    });
+
+    function toggleFollow(btn) {
+      if (btn.classList.contains("following")) {
+        btn.classList.remove("following");
+        btn.innerText = "Follow";
+      } else {
+        btn.classList.add("following");
+        btn.innerText = "Following ✓";
+      }
+    }
+  </script>
 </body>
 </html>

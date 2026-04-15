@@ -11,6 +11,14 @@ header .nav-links a {
       margin-left: 20px;
       font-weight: bold;
     }
+header button{
+    background-color: #eb73eb;
+    color: #ffffff;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+      border-color: #eb73eb;
+}
 header .nav-links a:hover{
     background-color: #cd1a98;
 }

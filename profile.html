@@ -1,169 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Profile Page</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #e26ad6;
-            background-image: url(backgroundpic1.jpeg);
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            animation: pageFade 1s ease forwards;
-        }
-
-        .profile-container {
-            background: #f47575;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            width: 350px;
-            text-align: center;
-            padding: 20px;
-             animation: cardRise 0.9s ease forwards;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .profile-picture {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin: 0 auto;
-            border: 3px solid #007bff;
-            animation: floatPic 3s ease-in-out infinite,
-               glowRing 2s ease-in-out infinite alternate;
-        }
-
-        .profile-picture img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .profile-name {
-            font-size: 1.5em;
-            font-weight: 700;
-            margin: 15px 0;
-            color: #333;
-            animation: slideFadeText 0.8s ease forwards;
-        }
-
-        .profile-bio {
-            font-size: 0.9em;
-            color: #150101;
-            margin-bottom: 20px;
-            line-height: 1.5;
-                animation: fadeOnly 1.2s ease forwards;
-
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .social-links a {
-            text-decoration: none;
-            color: #f1eeee;
-            background-color: #007bff;
-            padding: 8px 12px;
-            border-radius: 5px;
-            font-size: 0.9em;
-            transition: background-color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: #0056b3;
-             transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 6px 14px rgba(0,0,0,0.3);
-        }
-        .social-links a::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -120%;
-    width: 120%;
-    height: 100%;
-    background: rgba(255,255,255,0.35);
-    transition: 0.5s;
-}
-
-.social-links a:hover::after {
-    left: 120%;
-}
-
-/* ===== KEYFRAMES ===== */
-
-@keyframes pageFade {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes cardRise {
-    from {
-        opacity: 0;
-        transform: translateY(50px) scale(0.9);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - BlogSphere</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(160deg, #F4C0D1 0%, #FAEEDA 100%);
     }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
+    header {
+      background: linear-gradient(90deg, #D4537E, #ED93B1);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-}
-
-@keyframes floatPic {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-@keyframes glowRing {
-    from { box-shadow: 0 0 10px rgba(0,123,255,0.4); }
-    to { box-shadow: 0 0 25px rgba(0,123,255,0.8); }
-}
-
-@keyframes slideFadeText {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
+    header h1 { color: white; font-size: 1.3rem; font-family: 'Roboto', sans-serif; }
+    .nav-links { display: flex; align-items: center; gap: 16px; }
+    .nav-links a {
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      font-size: 14px;
     }
-    to {
-        opacity: 1;
-        transform: translateX(0);
+    .nav-links a:hover { color: white; }
+    .logout-btn {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: 1.5px solid white;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.3s;
     }
-}
+    .logout-btn:hover { background: rgba(255,255,255,0.35); }
 
-@keyframes fadeOnly {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-    </style>
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - 60px);
+      padding: 40px 16px;
+    }
+
+    .profile-card {
+      background: #FBEAF0;
+      border-radius: 20px;
+      border: 1px solid #ED93B1;
+      box-shadow: 0 8px 32px rgba(212,83,126,0.2);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      padding: 36px 28px;
+      animation: cardRise 0.9s ease forwards;
+    }
+
+    .profile-picture {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 20px;
+      border: 4px solid #D4537E;
+      animation: floatPic 3s ease-in-out infinite, glowRing 2s ease-in-out infinite alternate;
+    }
+    .profile-picture img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-name {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #72243E;
+      margin-bottom: 6px;
+      animation: slideFadeText 0.8s ease forwards;
+    }
+
+    .profile-handle {
+      font-size: 13px;
+      color: #993556;
+      margin-bottom: 16px;
+    }
+
+    .profile-bio {
+      font-size: 14px;
+      color: #72243E;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      background: #F4C0D1;
+      border-radius: 10px;
+      padding: 12px 16px;
+      border: 1px solid #ED93B1;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .stat-number {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #D4537E;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: #993556;
+    }
+
+    .divider {
+      height: 1px;
+      background: #ED93B1;
+      margin-bottom: 24px;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    .social-links a {
+      text-decoration: none;
+      color: white;
+      background: linear-gradient(90deg, #D4537E, #EF9F27);
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+    .social-links a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(212,83,126,0.4);
+    }
+
+    .edit-btn {
+      display: block;
+      width: 100%;
+      padding: 11px;
+      border-radius: 25px;
+      border: 2px solid #D4537E;
+      background: transparent;
+      color: #D4537E;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: all 0.3s;
+    }
+    .edit-btn:hover {
+      background: #D4537E;
+      color: white;
+    }
+
+    @keyframes cardRise {
+      from { opacity: 0; transform: translateY(40px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes floatPic {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes glowRing {
+      from { box-shadow: 0 0 10px rgba(212,83,126,0.4); }
+      to { box-shadow: 0 0 25px rgba(212,83,126,0.8); }
+    }
+    @keyframes slideFadeText {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+  </style>
 </head>
 <body>
-    <div class="profile-container">
-        <div class="profile-picture">
-            <img src="prof4.png" alt="Profile Picture">
-        </div>
-        <div class="profile-name">Nausheen</div>
-        <div class="profile-bio">
-            Blogger, coffee enthusiast, and tech lover. Sharing my thoughts and experiences one post at a time.
-        </div>
-        <div class="social-links">
-            <a href="#">Twitter</a>
-            <a href="https://www.linkedin.com/in/nausheen-waseem-32365b308?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">LinkedIn</a>
-            <a href="#">GitHub</a>
-        </div>
+  <header>
+    <h1>BlogSphere</h1>
+    <div class="nav-links">
+      <a href="post1.html">Feed</a>
+      <a href="explore.html">Explore</a>
+      <button class="logout-btn" onclick="logout()">Logout</button>
     </div>
+  </header>
+
+  <main>
+    <div class="profile-card">
+      <div class="profile-picture">
+        <img src="prof4.png" alt="Profile Picture">
+      </div>
+      <div class="profile-name" id="profileName">Nausheen</div>
+      <div class="profile-handle">@nausheen · BlogSphere</div>
+      <div class="profile-bio">
+        Blogger, coffee enthusiast, and tech lover. Sharing my thoughts and experiences one post at a time. ✨
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-number">12</span>
+          <span class="stat-label">Posts</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">248</span>
+          <span class="stat-label">Followers</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">183</span>
+          <span class="stat-label">Following</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="social-links">
+        <a href="#">Twitter</a>
+        <a href="https://www.linkedin.com/in/nausheen-waseem-32365b308">LinkedIn</a>
+        <a href="#">GitHub</a>
+      </div>
+
+      <button class="edit-btn">Edit Profile</button>
+    </div>
+  </main>
+
+  <script>
+    const username = localStorage.getItem("username");
+    const token = localStorage.getItem("token");
+    if (!token) { window.location.href = "login2.html"; }
+    if (username) {
+      document.getElementById("profileName").innerText = username;
+    }
+
+    function logout() {
+      localStorage.removeItem("token");
+      localStorage.removeItem("username");
+      window.location.href = "login2.html";
+    }
+  </script>
 </body>
 </html>

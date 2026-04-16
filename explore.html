@@ -239,14 +239,23 @@
     `;
 
     // Static other users
-    const users = [
-      { name: "Anjali Gupta", img: "anjali.jpeg", bio: "Travel blogger and photographer. Exploring the world one city at a time!" },
-      { name: "Daniya Shamsi", img: "daniya.jpeg", bio: "Tech enthusiast, coding my way through life. Let's connect and innovate!" },
-      { name: "Vashvi P", img: "vashvi.jpeg", bio: "Book lover and aspiring novelist. Sharing stories and finding inspiration." },
-      { name: "Kashish Fatima", img: "prof.jpeg", bio: "Fitness trainer. Helping you stay fit and motivated every day!" },
-      { name: "Sara Khan", img: "sara.jpg", bio: "Food blogger and home chef. Bringing flavors to your feed!" },
-      { name: "Maheen", img: "Maheen.jpg", bio: "Artist and creative soul. Painting the world in colors!" },
-    ];
+    fetch("https://blogsphere-backend-al6x.onrender.com/auth/users")
+  .then(res => res.json())
+  .then(data => {
+    const othersSection = document.getElementById("others-section");
+
+    data.forEach(user => {
+      if (user.name !== username) {
+        othersSection.innerHTML += `
+          <div class="profile-card">
+            <div class="card-avatar-initials">${getInitials(user.name)}</div>
+            <div class="card-name">${user.name}</div>
+            <button class="follow-btn">Follow</button>
+          </div>
+        `;
+      }
+    });
+  });
 
     const othersSection = document.getElementById("others-section");
     users.forEach(user => {

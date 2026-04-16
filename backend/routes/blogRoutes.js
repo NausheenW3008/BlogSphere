@@ -9,9 +9,16 @@ router.post("/", upload.single("image"), async (req, res) => {
     const { title, content } = req.body;
     const imageUrl = req.file ? req.file.path : "";
 
-    const blog = new Blog({ title, content, imageUrl });
+    const blog = new Blog({
+      title,
+      content,
+      imageUrl,
+      author: req.headers.username,   // 👈 from frontend
+    });
+
     const savedBlog = await blog.save();
     res.json(savedBlog);
+
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

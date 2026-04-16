@@ -131,5 +131,9 @@ router.post("/reset-password/:token", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+router.get("/users", async (req, res) => {
+  const users = await User.find().select("name");
+  res.json(users);
+});
 
 module.exports = router;

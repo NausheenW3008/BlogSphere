@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feed - BlogSphere</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Arial, sans-serif;
       min-height: 100vh;
       background: #FBEAF0;
     }
+
     header {
       background: linear-gradient(90deg, #D4537E, #ED93B1);
       padding: 14px 24px;
@@ -21,16 +28,30 @@
       top: 0;
       z-index: 100;
     }
-    header h1 { color: white; font-size: 1.3rem; }
-    .nav-links { display: flex; align-items: center; gap: 16px; }
+
+    header h1 {
+      color: white;
+      font-size: 1.3rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
     .nav-links a {
-      color: rgba(255,255,255,0.9);
+      color: rgba(255, 255, 255, 0.9);
       text-decoration: none;
       font-size: 14px;
     }
-    .nav-links a:hover { color: white; }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
     .logout-btn {
-      background: rgba(255,255,255,0.2);
+      background: rgba(255, 255, 255, 0.2);
       color: white;
       border: 1.5px solid white;
       padding: 5px 14px;
@@ -39,14 +60,24 @@
       cursor: pointer;
       transition: all 0.3s;
     }
-    .logout-btn:hover { background: rgba(255,255,255,0.35); }
-    main { max-width: 600px; margin: 0 auto; padding: 24px 16px; }
+
+    .logout-btn:hover {
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    main {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 24px 16px;
+    }
+
     .top-bar {
       display: flex;
       gap: 12px;
       align-items: center;
       margin-bottom: 24px;
     }
+
     .search-input {
       flex: 1;
       padding: 10px 16px;
@@ -57,7 +88,11 @@
       font-size: 14px;
       outline: none;
     }
-    .search-input::placeholder { color: #993556; }
+
+    .search-input::placeholder {
+      color: #993556;
+    }
+
     .new-post-btn {
       padding: 10px 18px;
       border-radius: 25px;
@@ -72,7 +107,12 @@
       display: inline-block;
       transition: all 0.3s;
     }
-    .new-post-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(212,83,126,0.4); }
+
+    .new-post-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(212, 83, 126, 0.4);
+    }
+
     .post-card {
       background: #F4C0D1;
       border-radius: 16px;
@@ -81,12 +121,14 @@
       margin-bottom: 24px;
       animation: fadeUp 0.5s ease forwards;
     }
+
     .post-user {
       display: flex;
       align-items: center;
       gap: 10px;
       padding: 12px 16px;
     }
+
     .post-avatar {
       width: 40px;
       height: 40px;
@@ -100,19 +142,53 @@
       font-weight: bold;
       flex-shrink: 0;
     }
-    .post-meta { display: flex; flex-direction: column; }
-    .post-username { font-size: 14px; font-weight: bold; color: #72243E; }
-    .post-date { font-size: 11px; color: #993556; }
+
+    .post-meta {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .post-username {
+      font-size: 14px;
+      font-weight: bold;
+      color: #72243E;
+    }
+
+    .post-date {
+      font-size: 11px;
+      color: #993556;
+    }
+
     .post-img img {
       width: 100%;
       display: block;
       max-height: none;
       object-fit: cover;
     }
-    .post-body { padding: 12px 16px; }
-    .post-title { font-size: 15px; font-weight: bold; color: #72243E; margin-bottom: 4px; }
-    .post-content { font-size: 13px; color: #993556; line-height: 1.5; margin-bottom: 12px; }
-    .post-actions { display: flex; gap: 10px; }
+
+    .post-body {
+      padding: 12px 16px;
+    }
+
+    .post-title {
+      font-size: 15px;
+      font-weight: bold;
+      color: #72243E;
+      margin-bottom: 4px;
+    }
+
+    .post-content {
+      font-size: 13px;
+      color: #993556;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .post-actions {
+      display: flex;
+      gap: 10px;
+    }
+
     .action-btn {
       padding: 6px 16px;
       border-radius: 20px;
@@ -124,8 +200,17 @@
       cursor: pointer;
       transition: all 0.3s;
     }
-    .action-btn:hover { background: #D4537E; color: white; }
-    .comments-section { margin-top: 12px; display: none; }
+
+    .action-btn:hover {
+      background: #D4537E;
+      color: white;
+    }
+
+    .comments-section {
+      margin-top: 12px;
+      display: none;
+    }
+
     .existing-comments p {
       background: #FBEAF0;
       border-radius: 8px;
@@ -134,6 +219,7 @@
       color: #72243E;
       margin-bottom: 6px;
     }
+
     .comment-input {
       width: 100%;
       padding: 8px 12px;
@@ -146,6 +232,7 @@
       margin-top: 6px;
       margin-bottom: 6px;
     }
+
     .add-comment-btn {
       padding: 6px 16px;
       border-radius: 20px;
@@ -156,18 +243,28 @@
       font-weight: bold;
       cursor: pointer;
     }
+
     footer {
       text-align: center;
       padding: 20px;
       color: #993556;
       font-size: 13px;
     }
+
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
+
 <body>
   <header>
     <h1>BlogSphere</h1>
@@ -193,7 +290,7 @@
 
   <script>
     const token = localStorage.getItem("token");
-    const username = localStorage.getItem("username");
+    // const username = localStorage.getItem("username");
     if (!token) { alert("Please login first!"); window.location.href = "login2.html"; }
 
     function logout() {
@@ -213,14 +310,16 @@
         const posts = await response.json();
         const postsDiv = document.querySelector(".post-container");
 
+        container.innerHTML = "";
         posts.forEach(post => {
+          const author = post.author || "Unknown";
           const postHTML = `
             <div class="post-card" data-id="${post._id}">
               <div class="post-user">
-                <div class="post-avatar">${getInitials(username)}</div>
-                <div class="post-meta">
-                  <span class="post-username">${username}</span>
-                  <span class="post-date">${new Date(post.createdAt).toLocaleDateString("en-US", { year:"numeric", month:"short", day:"numeric" })}</span>
+                <div class="post-avatar">${getInitials(author)}</div>
+
+<span class="post-username">${author}</span>
+                  <span class="post-date">${new Date(post.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</span>
                 </div>
               </div>
               ${post.imageUrl ? `<div class="post-img"><img src="${post.imageUrl}" alt="Post image"></div>` : ""}
@@ -276,4 +375,5 @@
     }
   </script>
 </body>
+
 </html>
